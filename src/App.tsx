@@ -65,7 +65,6 @@ function App() {
 export default App;
 
 async function fetchData(CustomerEmail: string | undefined) {
-  
   try {
     const options = {
       method: "post",
@@ -81,12 +80,13 @@ async function fetchData(CustomerEmail: string | undefined) {
     }
 
     const jsonData = await response.text();
+    console.log(jsonData)
     return JSON.parse(jsonData);
   } catch (error) {
     return "error: ";
   }
 }
-
+ 
 function goegr() {
   return "hello this works";
 }
