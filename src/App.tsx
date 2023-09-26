@@ -13,13 +13,15 @@ function App() {
   const appRef = useSetAppHeight();
 
   const [userEmail, setUserEmail] = useState<string | undefined>(
-    "unknown user"
+    "unknown user",
   );
   const [CustomerEmail, setCustomerEmail] = useState<string | undefined>(
-    "unknown user"
+    "unknown user",
   );
   const [status, setStatus] = useState<string | undefined>("unknown status");
-  const [fetchedData, setFetchedData] = useState<string | undefined>();
+  const [customerData, setCustomerData] = useState<string | undefined>(
+    "Fetching data...",
+  );
 
   const { user, conversation, customer } = useHelpScoutContext();
 
@@ -31,15 +33,15 @@ function App() {
     if (CustomerEmail) {
       // Check if CustomerEmail is not undefined
       fetchData(CustomerEmail).then((data) => {
-        setFetchedData(data.country);
+        setCustomerData(data?.country);
       });
     }
-  }, [user, conversation, customer]);
+  }, [user, conversation, customer, CustomerEmail]); // Add CustomerEmail to the dependency array
 
   function onClick() {
     HelpScout.showNotification(
       NOTIFICATION_TYPES.SUCCESS,
-      "Hello from the sidebar app"
+      "Hello from the sidebar app",
     );
   }
 
@@ -49,9 +51,10 @@ function App() {
       <Heading level="h1">Hello, {userEmail} </Heading>
       <Text>
         The conversation is {status} for the customer with the email{" "}
-        {CustomerEmail} --- {fetchedData}--- {goegr()}
+        {CustomerEmail} --- {goegr()}
       </Text>
-
+      <Text>Data --- {customerData}</Text>
+ 
       <Button size="sm" onClick={onClick}>
         Click me
       </Button>
@@ -61,33 +64,29 @@ function App() {
 
 export default App;
 
-async function fetchData(customerEmail: string) {
+async function fetchData(CustomerEmail: string | undefined) {
+  
   try {
     const options = {
       method: "post",
-      //followRedirects: true,
-      // headers: {
-      //   "Content-Type": "application/json",
-      // },
-      body: JSON.stringify({ data: customerEmail }), // Send data as JSON string
+      body: JSON.stringify({ data: CustomerEmail }), // Send data as JSON string
     };
     const response = await fetch(
-      "https://script.google.com/macros/s/AKfycbzauu8KHNjvzw4oH2ZNOEBEnBigNjuCAsNoByRALukyFgLjRLGev7xt1_w0tY5WnJF-/exec",
-      options
+      "https://script.google.com/macros/s/AKfycbyC3iuqH4FQLbzfkPkkpXN8kWBPaArCI1T1q4PfBHE3HQQjhss4-PIytyNDVRfHKxOx/exec",
+      options,
     );
+
     if (!response.ok) {
       throw new Error("Response not OK");
     }
 
-      const jsonData = await response.json()
-    return jsonData;
+    const jsonData = await response.text();
+    return JSON.parse(jsonData);
   } catch (error) {
-    return "error: " + error;
+    return "error: ";
   }
 }
 
-//fetchData();
-
 function goegr() {
-  return "hello";
+  return "hello this works";
 }
