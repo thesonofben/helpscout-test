@@ -7,19 +7,31 @@
     "dev": "vite --host",
     "build": "tsc && vite build",
     "preview": "vite preview --host",
-    "watch": "tsc && (vite preview --host &) && vite build --watch"
+    "watch": "tsc && (vite preview --host &) && vite build --watch",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "dependencies": {
     "@helpscout/javascript-sdk": "^0.4.0",
     "@helpscout/ui-kit": "^0.6.7",
+    "axios": "^1.5.1",
     "mysql2": "^3.6.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "@storybook/addon-essentials": "^7.4.6",
+    "@storybook/addon-interactions": "^7.4.6",
+    "@storybook/addon-links": "^7.4.6",
+    "@storybook/addon-onboarding": "^1.0.8",
+    "@storybook/blocks": "^7.4.6",
+    "@storybook/react": "^7.4.6",
+    "@storybook/react-vite": "^7.4.6",
+    "@storybook/testing-library": "^0.2.2",
     "@types/react": "^18.0.15",
     "@types/react-dom": "^18.0.6",
     "@vitejs/plugin-react": "^4.0.0",
+    "storybook": "^7.4.6",
     "typescript": "^4.6.4",
     "vite": "^4.3.0",
     "vite-plugin-mkcert": "^1.15.0"
