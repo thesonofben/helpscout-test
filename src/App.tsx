@@ -24,7 +24,7 @@ type MagazineData = {
     endArrivalDate: string;
   };
 };
-
+//test
 function formatDate(inputDate: string) {
   const options: Intl.DateTimeFormatOptions = {
     year: "numeric",
