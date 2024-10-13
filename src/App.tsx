@@ -38,11 +38,11 @@ function App() {
   const appRef = useSetAppHeight();
   const [userName, setUserName] = useState<string | undefined>("unknown user");
   const [CustomerEmail, setCustomerEmail] = useState<string | undefined>(
-    "unknown user",
+    "unknown user"
   );
   const [status, setStatus] = useState<string | undefined>("unknown status");
   const [customerData, setCustomerData] = useState<string | undefined>(
-    "Fetching Data...",
+    "Fetching Data..."
   );
   const [country, setCountry] = useState(String);
   const [userID, setuserID] = useState(null);
@@ -76,6 +76,7 @@ function App() {
   const [openMagazine, setOpenMagazine] = useState(null);
 
   const CusEmail = useHelpScoutContext().customer?.emails[0]?.value;
+  const UserEmail = useHelpScoutContext().user?.email;
 
   useEffect(() => {
     //setUserName(user?.firstName);
@@ -90,8 +91,12 @@ function App() {
         //   "Content-Type": "application/json",
         // Add any other headers you need
         // },
-        body: JSON.stringify({ data: CusEmail, type: "cusData" }),
-      },
+        body: JSON.stringify({
+          data: CusEmail,
+          type: "cusData",
+          useremail: UserEmail,
+        }),
+      }
     )
       .then((response) => response.json()) // Parse the response as JSON
       .then((data) => {
@@ -164,7 +169,7 @@ function App() {
   function onClick() {
     HelpScout.showNotification(
       NOTIFICATION_TYPES.SUCCESS,
-      "Hello from the sidebar app",
+      "Hello from the sidebar app"
     );
   }
 
@@ -444,7 +449,7 @@ function App() {
                     HelpScout.setClipboardText(
                       formatDate(topUpStartETA.substring(0, 10)) +
                         " - " +
-                        formatDate(topUpEndETA.substring(0, 10)),
+                        formatDate(topUpEndETA.substring(0, 10))
                     );
                   }
                 }}
@@ -502,7 +507,7 @@ function App() {
                   onClick={() => {
                     if (magazines[magazineKey].labelRunDate) {
                       HelpScout.setClipboardText(
-                        formatDate(magazines[magazineKey].labelRunDate),
+                        formatDate(magazines[magazineKey].labelRunDate)
                       );
                     }
                   }}
@@ -530,7 +535,7 @@ function App() {
                   onClick={() => {
                     if (magazines[magazineKey].dispatchDate) {
                       HelpScout.setClipboardText(
-                        formatDate(magazines[magazineKey].dispatchDate),
+                        formatDate(magazines[magazineKey].dispatchDate)
                       );
                     }
                   }}
@@ -557,7 +562,7 @@ function App() {
                   onClick={() => {
                     if (magazines[magazineKey].onSaleDate) {
                       HelpScout.setClipboardText(
-                        formatDate(magazines[magazineKey].onSaleDate),
+                        formatDate(magazines[magazineKey].onSaleDate)
                       );
                     }
                   }}
@@ -589,7 +594,7 @@ function App() {
                       HelpScout.setClipboardText(
                         formatDate(magazines[magazineKey].startArrivalDate) +
                           " - " +
-                          formatDate(magazines[magazineKey].endArrivalDate),
+                          formatDate(magazines[magazineKey].endArrivalDate)
                       );
                     }
                   }}
@@ -609,10 +614,10 @@ function App() {
         ))}
       </Accordion>
       <br />
-{/*       <Button size="sm" onClick={onClick}>
+      {/* <Button size="sm" onClick={onClick}>
         Click me
-      </Button>
-      <style> */}
+      </Button>*/}
+      <style>
         {`
         html, body {
           overflow: hidden;
