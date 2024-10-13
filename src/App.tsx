@@ -609,10 +609,10 @@ function App() {
         ))}
       </Accordion>
       <br />
-      <Button size="sm" onClick={onClick}>
+{/*       <Button size="sm" onClick={onClick}>
         Click me
       </Button>
-      <style>
+      <style> */}
         {`
         html, body {
           overflow: hidden;
